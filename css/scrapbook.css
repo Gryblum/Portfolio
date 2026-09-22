@@ -391,17 +391,35 @@ a { color: inherit; }
 }
 .notebook-photo-panel {
   position: relative;
+  min-height: 360px;
   padding: 2.5rem;
-  background: var(--paper-white);
+  margin: 2.5rem;
+  background:
+    repeating-linear-gradient(0deg, transparent 0 31px, rgba(201, 191, 168, 0.55) 31px 32px),
+    var(--paper-white);
+  border: 1px solid var(--line);
+  box-shadow: 0 14px 22px -16px rgba(20,15,5,0.55);
+  transform: rotate(-2deg);
 }
-.torn-photo {
+.notebook-photo-panel::before {
+  content: "";
+  position: absolute;
+  z-index: 2;
+  top: -18px;
+  left: 50%;
+  width: 112px;
+  height: 34px;
+  background: rgba(206, 178, 126, 0.78);
+  box-shadow: 0 2px 5px rgba(20,15,5,0.12);
+  transform: translateX(-50%) rotate(3deg);
+}
+.notebook-photo-panel img {
   position: relative;
+  z-index: 1;
   display: block;
   width: 100%;
   height: 100%;
   object-fit: cover;
-  aspect-ratio: 3 / 4;
-  clip-path: polygon(0 0, 60% 0, 65% 8%, 58% 16%, 68% 24%, 60% 34%, 70% 44%, 62% 55%, 72% 66%, 100% 60%, 100% 100%, 0 100%);
 }
 .notebook-text-panel {
   position: relative;
@@ -466,6 +484,7 @@ a { color: inherit; }
 
 @media (max-width: 900px) {
   .notebook-spread { grid-template-columns: 1fr; }
+  .notebook-photo-panel { min-height: 220px; margin: 2rem; }
   .notebook-text-panel { border-left: none; border-top: 1px solid var(--line); }
   .skills-list { gap: 0.8rem; }
   .tool-item img { max-width: 54px; height: 40px; }
